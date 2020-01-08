@@ -1,0 +1,25 @@
+PartType terminator;
+
+terminator A();
+terminator B();
+terminator C();
+
+Device circuit(
+       A,
+       B,
+       C
+);
+
+Rule R1( ON circuit:
+     A BEFORE B AND
+     B BEFORE C AND
+     ALL_FORWARD
+);
+
+Rule R2( ON circuit:
+     B BEFORE A AND
+     A BEFORE C AND
+     ALL_FORWARD
+);
+
+results = permute(circuit);
